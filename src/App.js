@@ -43,7 +43,7 @@ function App() {
 
           <ul className="nav navbar-nav navbar-right">
             <li><a href="#">Welcome: {Cookies.get('empEId')}</a></li>
-            <li><a href="http://localhost:3008" >Logout</a></li>
+            <li><a href="http://localhost:3002" >Logout</a></li>
           </ul>
         </div>
       </nav>

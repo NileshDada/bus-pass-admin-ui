@@ -9,12 +9,12 @@ class RoleService{
     
     getRolesDetailsByPaging(){
         return axios.get(BASE_URL_API+"/roles/search?page=0&size=20&sort=roleName")
-       /* if (null != Cookies.get('empId')) {
+        if (null != Cookies.get('custId')) {
             return axios.get(BASE_URL_API+"/roles/search?page=0&size=20&sort=roleName")
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
-        }  */
+        }  
     }
    
     
