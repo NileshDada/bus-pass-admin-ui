@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import RoleComponent from './MasterComponents/RoleComponent';
+import LanguageMasterComponent from './MasterComponents/LanguageMasterComponent';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             <ul className="dropdown-menu">
                       
             <li><Link to="/roles">Role Master</Link></li>
-            <li><Link to="/employeekpp">Language Master</Link></li>
+            <li><Link to="/langauge">Language Master</Link></li>
             <li><Link to="/employeekpp">Routes Master</Link></li>
             <li><Link to="/viewKppReport">Bus Stop Master</Link></li>
             <li><Link to="/employeekpp">Pass Type Master</Link></li>
@@ -51,7 +52,7 @@ function App() {
 
         <Route exact path="/" ></Route>
         <Route exact path="/roles" element={<RoleComponent></RoleComponent>}></Route>
-        <Route exact path="/viewKppReport" ></Route>
+        <Route exact path="/langauge"  element={<LanguageMasterComponent></LanguageMasterComponent>}></Route>
         <Route exact path="/updateEmployeeProfile" ></Route>
         <Route exact path="/changePassword"></Route>
         <Route exact path="/myComplaint"></Route>
