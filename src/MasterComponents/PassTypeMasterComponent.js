@@ -13,6 +13,8 @@ export default function PassTypeMasterComponent() {
     const [passTypeDescription, setPassTypeDescription] = useState('');
     const [passTypeEndDate, setPassTypeEndDate] = useState('');
 
+    
+
     const [passTypeCollectionLocation, setPassTypeCollectionLocation] = useState('');
     const [passTypeAmount, setPassTypeAmount] = useState('');
     const [passTypeAgeLimit, setPassTypeAgeLimit] = useState('');
@@ -241,8 +243,10 @@ export default function PassTypeMasterComponent() {
                                 <div className="form-group">
                                     <label className="control-label col-sm-4" htmlFor="passTypeEndDate">Enter Pass Type End Date of Year:</label>
                                     <div className="col-sm-8">
-                                        <input type="text" className="form-control" id="passTypeEndDate" placeholder="Enter Pass Type End Date of Year here" value={passTypeEndDate} onChange={(e) => setPassTypeEndDate(e.target.value)} />
-                                    </div>
+                                       
+                                        <input type="date" className="form-control" defaultValue={passTypeEndDate}  name="passTypeEndDate" onChange={(e) => setPassTypeEndDate(e.target.value)} />
+                                   
+                                        </div>
                                 </div>
 
 
