@@ -5,6 +5,7 @@ import RoleComponent from './MasterComponents/RoleComponent';
 import LanguageMasterComponent from './MasterComponents/LanguageMasterComponent';
 import DocumentMasterComponent from './MasterComponents/DocumentMasterComponent';
 import RoutesMasterComponent from './MasterComponents/RoutesMasterComponent';
+import PassTypeMasterComponent from './MasterComponents/PassTypeMasterComponent';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             <li><Link to="/langauge">Language Master</Link></li>
             <li><Link to="/routes">Routes Master</Link></li>
             <li><Link to="/viewKppReport">Bus Stop Master</Link></li>
-            <li><Link to="/employeekpp">Pass Type Master</Link></li>
+            <li><Link to="/passtype">Pass Type Master</Link></li>
             <li><Link to="/documents">Document Master</Link></li>
             <li><Link to="/employeekpp">Pass Type Document Master</Link></li>
 
@@ -57,7 +58,7 @@ function App() {
         <Route exact path="/langauge"  element={<LanguageMasterComponent></LanguageMasterComponent>}></Route>
         <Route exact path="/documents"  element={<DocumentMasterComponent></DocumentMasterComponent>}></Route>
         <Route exact path="/routes" element={<RoutesMasterComponent></RoutesMasterComponent>}></Route>
-        <Route exact path="/myComplaint"></Route>
+        <Route exact path="/passtype" element={<PassTypeMasterComponent></PassTypeMasterComponent>}></Route>
         <Route exact path="/othersPendingComplaint" ></Route>
         <Route exact path="/othersInProgressComplaint" ></Route>
         <Route exact path="/othersResolveComplaint"></Route>
