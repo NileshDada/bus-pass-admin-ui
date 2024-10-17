@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import RoleComponent from './MasterComponents/RoleComponent';
 import LanguageMasterComponent from './MasterComponents/LanguageMasterComponent';
+import DocumentMasterComponent from './MasterComponents/DocumentMasterComponent';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
             <li><Link to="/employeekpp">Routes Master</Link></li>
             <li><Link to="/viewKppReport">Bus Stop Master</Link></li>
             <li><Link to="/employeekpp">Pass Type Master</Link></li>
-            <li><Link to="/employeekpp">Document Master</Link></li>
+            <li><Link to="/documents">Document Master</Link></li>
             <li><Link to="/employeekpp">Pass Type Document Master</Link></li>
 
             </ul>
@@ -53,7 +54,7 @@ function App() {
         <Route exact path="/" ></Route>
         <Route exact path="/roles" element={<RoleComponent></RoleComponent>}></Route>
         <Route exact path="/langauge"  element={<LanguageMasterComponent></LanguageMasterComponent>}></Route>
-        <Route exact path="/updateEmployeeProfile" ></Route>
+        <Route exact path="/documents"  element={<DocumentMasterComponent></DocumentMasterComponent>}></Route>
         <Route exact path="/changePassword"></Route>
         <Route exact path="/myComplaint"></Route>
         <Route exact path="/othersPendingComplaint" ></Route>
