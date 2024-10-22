@@ -6,6 +6,7 @@ import LanguageMasterComponent from './MasterComponents/LanguageMasterComponent'
 import DocumentMasterComponent from './MasterComponents/DocumentMasterComponent';
 import RoutesMasterComponent from './MasterComponents/RoutesMasterComponent';
 import PassTypeMasterComponent from './MasterComponents/PassTypeMasterComponent';
+import CustomerMasterComponent from './components/CustomerMasterComponent/CustomerMasterComponent';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           
           <ul className="nav navbar-nav">
 
-          <li><Link to="/announcement">Customer Master</Link></li>
+          <li><Link to="/customer">Customer Master</Link></li>
           <li><Link to="/announcement">Customer Psss Master</Link></li>  
             <li className="dropdown">
             <a className="dropdown-toggle" data-toggle="dropdown" href="#">Master Records
@@ -46,7 +47,7 @@ function App() {
           </ul>
 
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#">Welcome: {Cookies.get('empEId')}</a></li>
+            <li><a href="#">Welcome: {Cookies.get('custName')}</a></li>
             <li><a href="http://localhost:3002" >Logout</a></li>
           </ul>
         </div>
@@ -59,7 +60,7 @@ function App() {
         <Route exact path="/documents"  element={<DocumentMasterComponent></DocumentMasterComponent>}></Route>
         <Route exact path="/routes" element={<RoutesMasterComponent></RoutesMasterComponent>}></Route>
         <Route exact path="/passtype" element={<PassTypeMasterComponent></PassTypeMasterComponent>}></Route>
-        <Route exact path="/othersPendingComplaint" ></Route>
+        <Route exact path="/customer"  element={<CustomerMasterComponent></CustomerMasterComponent>}></Route>
         <Route exact path="/othersInProgressComplaint" ></Route>
         <Route exact path="/othersResolveComplaint"></Route>
 
