@@ -2,14 +2,14 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 import { BASE_URL_API, LOGIN_UI_BASE_URL } from "../URLConstants";
 
-const BASE_URL = BASE_URL_API+"/routes-master";
+const BASE_URL = BASE_URL_API+"/bus-stop-master";
 
 
-class RoutesMasterService {
+class BusStopMasterService {
 
-    saveRoutesMastertDetails(routesmaster) {
+    saveBusStopMastertDetails(busstopmaster) {
         if (null != Cookies.get('empId')) {
-            return axios.post(BASE_URL, routesmaster)
+            return axios.post(BASE_URL, busstopmaster)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -17,9 +17,9 @@ class RoutesMasterService {
 
     }
 
-    updateRoutesMastertDetails(routesmaster) {
+    updateBusStopMastertDetails(busstopmaster) {
         if (null != Cookies.get('empId')) {
-            return axios.put(BASE_URL, routesmaster)
+            return axios.put(BASE_URL, busstopmaster)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -29,10 +29,10 @@ class RoutesMasterService {
 
     
 
-    deleteRoutesById(routesId) {
+    deleteBusStopById(busStopId) {
        
         if (null != Cookies.get('empId')) {
-            return axios.delete(BASE_URL+`/?routesId=${routesId}`)
+            return axios.delete(BASE_URL+`/?busStopId=${busStopId}`)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -42,9 +42,9 @@ class RoutesMasterService {
 
 
     //at page load call all the departments load all departments
-   getRoutesMastertDetailsByPaging() {
+   getBusStopMastertDetailsByPaging() {
         if (null != Cookies.get('empId')) {
-            return axios.get(BASE_URL+"?statusCd=A&page=0&size=20o&sort=langName")
+            return axios.get(BASE_URL+"?statusCd=A&page=0&size=20o&sort=busStopId")
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -52,10 +52,10 @@ class RoutesMasterService {
     }
 
     
-    getRoutesDetailsById(routesId) {
+    getBusStopDetailsById(busStopId) {
        
         if (null != Cookies.get('empId')) {
-            return axios.get(BASE_URL+`/by-routesid?routesId=${routesId}`)
+            return axios.get(BASE_URL+`/by-busstopid?busStopId=${busStopId}`)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -63,16 +63,8 @@ class RoutesMasterService {
 
     }
 
-     //dropdown list for Route master
-     ddRoutesMaster() {
-        if (null != Cookies.get('empId')) {
-            return axios.get(BASE_URL +"/dd-routes")
-        } else {
-            alert("You need to login first")
-            window.location.replace(LOGIN_UI_BASE_URL);
-        }       
-    }
+   
 }
 
 
-export default new RoutesMasterService();
+export default new BusStopMasterService();

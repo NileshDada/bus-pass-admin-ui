@@ -9,6 +9,7 @@ import PassTypeMasterComponent from './MasterComponents/PassTypeMasterComponent'
 import CustomerMasterComponent from './components/CustomerMasterComponent/CustomerMasterComponent';
 import StudentPassMasterComponent from './components/StudentPassMasterComponent/StudentPassMasterComponent';
 import SchoolInformationMasterComponent from './MasterComponents/SchoolInformationMasterComponent';
+import BusStopMasterComponent from './MasterComponents/BusStopMasterComponent';
 
 function App() {
   return (
@@ -33,11 +34,12 @@ function App() {
             <li><Link to="/roles">Role Master</Link></li>
             <li><Link to="/langauge">Language Master</Link></li>
             <li><Link to="/routes">Routes Master</Link></li>
-            <li><Link to="/viewKppReport">Bus Stop Master</Link></li>
+            <li><Link to="/busstop">Bus Stop Master</Link></li>
             <li><Link to="/passtype">Pass Type Master</Link></li>
             <li><Link to="/documents">Document Master</Link></li>
             <li><Link to="/employeekpp">Pass Type Document Master</Link></li>
             <li><Link to="/schoolinfo">School Information</Link></li>
+            
 
             </ul>
           </li>
@@ -62,6 +64,8 @@ function App() {
         <Route exact path="/langauge"  element={<LanguageMasterComponent></LanguageMasterComponent>}></Route>
         <Route exact path="/documents"  element={<DocumentMasterComponent></DocumentMasterComponent>}></Route>
         <Route exact path="/routes" element={<RoutesMasterComponent></RoutesMasterComponent>}></Route>
+        <Route exact path="/busstop" element={<BusStopMasterComponent></BusStopMasterComponent>}></Route>
+        
         <Route exact path="/passtype" element={<PassTypeMasterComponent></PassTypeMasterComponent>}></Route>
         <Route exact path="/customer"  element={<CustomerMasterComponent></CustomerMasterComponent>}></Route>
         <Route exact path="/studentpass" element={<StudentPassMasterComponent></StudentPassMasterComponent>}></Route>
