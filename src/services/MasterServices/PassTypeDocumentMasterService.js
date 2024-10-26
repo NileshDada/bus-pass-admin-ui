@@ -2,14 +2,14 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 import { BASE_URL_API, LOGIN_UI_BASE_URL } from "../URLConstants";
 
-const BASE_URL = BASE_URL_API+"/document-master";
+const BASE_URL = BASE_URL_API+"/pass-type-document-master";
 
 
-class DocumentMasterService {
+class PassTypeDocumentMasterService {
 
-    saveDocumentMastertDetails(documentmaster) {
+    savePassTypeDocumentMastertDetails(passtypedocmaster) {
         if (null != Cookies.get('empId')) {
-            return axios.post(BASE_URL, documentmaster)
+            return axios.post(BASE_URL, passtypedocmaster)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -17,9 +17,9 @@ class DocumentMasterService {
 
     }
 
-    updateDocumentMastertDetails(documentmaster) {
+    updatePassTypeDocumentMastertDetails(passtypedocmaster) {
         if (null != Cookies.get('empId')) {
-            return axios.put(BASE_URL, documentmaster)
+            return axios.put(BASE_URL, passtypedocmaster)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -29,10 +29,10 @@ class DocumentMasterService {
 
     
 
-    deleteDocumentById(docId) {
+    deletePassTypeDocumentById(passTypeDocId) {
        
         if (null != Cookies.get('empId')) {
-            return axios.delete(BASE_URL+`/?docId=${docId}&employeeId=${Cookies.get('empId')}`)
+            return axios.delete(BASE_URL+`/?passTypeDocId=${passTypeDocId}`)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -42,9 +42,9 @@ class DocumentMasterService {
 
 
     //at page load call all the departments load all departments
-   getDocumentMastertDetailsByPaging() {
+   getPassTypeDocumentMastertDetailsByPaging() {
         if (null != Cookies.get('empId')) {
-            return axios.get(BASE_URL+"?statusCd=A&page=0&size=20o&sort=langName")
+            return axios.get(BASE_URL+"?statusCd=A&page=0&size=20o&sort=passTypeDocId")
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
@@ -52,27 +52,17 @@ class DocumentMasterService {
     }
 
     
-    getDocumentDetailsById(docId) {
+    getPassTypeDocumentDetailsById(passTypeDocId) {
        
         if (null != Cookies.get('empId')) {
-            return axios.get(BASE_URL+`/by-docid?docId=${docId}`)
+            return axios.get(BASE_URL+`/by-passtypedocid?passTypeDocId=${passTypeDocId}`)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);
         }
 
     }
-
-     //dropdown list for Route master
-     ddDocumentMaster() {
-        if (null != Cookies.get('empId')) {
-            return axios.get(BASE_URL +"/dd-document-master")
-        } else {
-            alert("You need to login first")
-            window.location.replace(LOGIN_UI_BASE_URL);
-        }       
-    }
 }
 
 
-export default new DocumentMasterService();
+export default new PassTypeDocumentMasterService();

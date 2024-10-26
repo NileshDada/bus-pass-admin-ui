@@ -62,6 +62,16 @@ class PassTypeMasterService {
         }
 
     }
+
+     //dropdown list for Route master
+     ddPassTypeMaster() {
+        if (null != Cookies.get('empId')) {
+            return axios.get(BASE_URL +"/dd-passtype")
+        } else {
+            alert("You need to login first")
+            window.location.replace(LOGIN_UI_BASE_URL);
+        }       
+    }
 }
 
 

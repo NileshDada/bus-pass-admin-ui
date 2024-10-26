@@ -10,6 +10,7 @@ import CustomerMasterComponent from './components/CustomerMasterComponent/Custom
 import StudentPassMasterComponent from './components/StudentPassMasterComponent/StudentPassMasterComponent';
 import SchoolInformationMasterComponent from './MasterComponents/SchoolInformationMasterComponent';
 import BusStopMasterComponent from './MasterComponents/BusStopMasterComponent';
+import PassTypeDocumentMasterComponent from './MasterComponents/PassTypeDocumentMasterComponent';
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
             <li><Link to="/busstop">Bus Stop Master</Link></li>
             <li><Link to="/passtype">Pass Type Master</Link></li>
             <li><Link to="/documents">Document Master</Link></li>
-            <li><Link to="/employeekpp">Pass Type Document Master</Link></li>
+            <li><Link to="/passtypedocument">Pass Type Document Master</Link></li>
             <li><Link to="/schoolinfo">School Information</Link></li>
             
 
@@ -71,7 +72,7 @@ function App() {
         <Route exact path="/studentpass" element={<StudentPassMasterComponent></StudentPassMasterComponent>}></Route>
         <Route exact path="/schoolinfo" element={<SchoolInformationMasterComponent></SchoolInformationMasterComponent>}></Route>
 
-        <Route exact path="/meetingMaster" ></Route>
+        <Route exact path="/passtypedocument" element={<PassTypeDocumentMasterComponent></PassTypeDocumentMasterComponent>} ></Route>
         <Route exact path="/updateDOB" ></Route>
         <Route exact path="/announcement" ></Route>
       </Routes>
