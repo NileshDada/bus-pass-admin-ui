@@ -29,10 +29,10 @@ class StudentPassMasterService {
 
     
 
-    deleteStudentPassById(custId) {
+    deleteStudentPassById(studPassId) {
        
         if (null != Cookies.get('empId')) {
-            return axios.delete(BASE_URL+`/?custId=${custId}`)
+            return axios.delete(BASE_URL+`/?studPassId=${studPassId}`)
         } else {
             alert("You need to login first")
             window.location.replace(LOGIN_UI_BASE_URL);

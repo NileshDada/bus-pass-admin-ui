@@ -63,6 +63,16 @@ class BusStopMasterService {
 
     }
 
+     //dropdown list for Route master
+     ddRoutesMaster() {
+        if (null != Cookies.get('empId')) {
+            return axios.get(BASE_URL +"/dd-routes")
+        } else {
+            alert("You need to login first")
+            window.location.replace(LOGIN_UI_BASE_URL);
+        }       
+    }
+
    
 }
 

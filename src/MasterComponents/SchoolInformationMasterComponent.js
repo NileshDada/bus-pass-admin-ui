@@ -11,7 +11,7 @@ export default function SchoolInformationMasterComponent() {
     const [schoolId, setSchoolId] = useState('');
     const [schoolName, setSchoolName] = useState('');
 
-    const [schoolAddresss, setSchoolAddresss] = useState('');
+    const [schoolAddress, setSchoolAddress] = useState('');
     const [schoolAutonomus, setSchoolAutonomus] = useState('No');
 
     const [schoolEveryDayStartTiming, setSchoolEveryDayStartTiming] = useState('');
@@ -59,14 +59,14 @@ export default function SchoolInformationMasterComponent() {
 
         let statusCd = 'A';
         let employeeId = Cookies.get('empId')
-        let schoolInformation = { schoolName, schoolAddresss, schoolAutonomus,schoolEveryDayStartTiming, schoolEveryDayEndTiming, remark, statusCd, employeeId };
+        let schoolInformation = { schoolName, schoolAddress, schoolAutonomus,schoolEveryDayStartTiming, schoolEveryDayEndTiming, remark, statusCd, employeeId };
 
         SchoolInformationMasterService.saveSchoolInformationMastertDetails(schoolInformation).then(res => {
 
             SchoolInformationMasterService.getSchoolInformationMastertDetailsByPaging().then((res) => {
                 if (res.data.success) {
                     setIsSuccess(true);
-                    setSchoolAddresss('');
+                    setSchoolAddress('');
                   
                     setSchoolInformationMasters(res.data.responseData.content);
 
@@ -91,7 +91,7 @@ export default function SchoolInformationMasterComponent() {
 
             setSchoolId(schoolInformation.schoolId)
             setSchoolName(schoolInformation.schoolName)
-            setSchoolAddresss(schoolInformation.schoolAddresss)
+            setSchoolAddress(schoolInformation.schoolAddress)
             setSchoolAutonomus(schoolInformation.schoolAutonomus)
             setSchoolEveryDayStartTiming(schoolInformation.schoolEveryDayStartTiming)
             setSchoolEveryDayEndTiming(schoolInformation.schoolEveryDayEndTiming)
@@ -130,7 +130,7 @@ export default function SchoolInformationMasterComponent() {
         e.preventDefault()
         let employeeId = Cookies.get('empId')
 
-        let routesmaster = { schoolId, schoolName, schoolAddresss, schoolAutonomus, schoolEveryDayStartTiming, schoolEveryDayEndTiming, remark, employeeId };
+        let routesmaster = { schoolId, schoolName, schoolAddress, schoolAutonomus, schoolEveryDayStartTiming, schoolEveryDayEndTiming, remark, employeeId };
         SchoolInformationMasterService.updateSchoolInformationMastertDetails(routesmaster).then(res => {
 
             SchoolInformationMasterService.getSchoolInformationMastertDetailsByPaging().then((res) => {
@@ -241,7 +241,7 @@ export default function SchoolInformationMasterComponent() {
                                     <label className="control-label col-sm-4" htmlFor="schoolAddresss">Enter School Address:</label>
                                     <div className="col-sm-8">
 
-                                        <input type="text" className="form-control" id="schoolAddresss" placeholder="Enter School Address" value={schoolAddresss} onChange={(e) => setSchoolAddresss(e.target.value)} />
+                                        <input type="text" className="form-control" id="schoolAddresss" placeholder="Enter School Address" value={schoolAddress} onChange={(e) => setSchoolAddress(e.target.value)} />
                                     </div>
                                 </div>
 
@@ -313,7 +313,7 @@ export default function SchoolInformationMasterComponent() {
                             <label className="control-label col-sm-4" htmlFor="schoolAddresss">Enter School Address:</label>
                             <div className="col-sm-8">
 
-                                <input type="text" className="form-control" id="schoolAddresss" placeholder="Enter School Address" value={schoolAddresss} onChange={(e) => setSchoolAddresss(e.target.value)} />
+                                <input type="text" className="form-control" id="schoolAddresss" placeholder="Enter School Address" value={schoolAddress} onChange={(e) => setSchoolAddress(e.target.value)} />
                             </div>
                         </div>
 
@@ -367,7 +367,7 @@ export default function SchoolInformationMasterComponent() {
                                 <div className="form-group">
                                 <label className="control-label col-sm-4" htmlFor="schoolAddresss" >School Address:</label>
                                 <div className="col-sm-8">
-                                    {schoolAddresss}
+                                    {schoolAddress}
                                 </div>
                             </div>
 

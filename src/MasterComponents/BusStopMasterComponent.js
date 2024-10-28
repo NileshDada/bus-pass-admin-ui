@@ -154,6 +154,9 @@ export default function BusStopMasterComponent() {
         setUpdateBusStopMasterAlert(false);
     }
 
+    const handleRoutesIdChange = (value) => {
+        setRoutesId(value)
+    }
 
 
     return (
@@ -229,7 +232,7 @@ export default function BusStopMasterComponent() {
                                 <div className="form-group">
                                     <label className="control-label col-sm-4" htmlFor="routesId">Enter Route Name:</label>
                                     <div className="col-sm-8">
-                                    <select className="form-control" id="ddRoutesId" onChange={(e) => setRoutesName(e.target.value)}>
+                                    <select className="form-control" id="ddRoutesId" onChange={(e) => handleRoutesIdChange(e.target.value)}>
 
                                     {
                                         ddRoutesMasters.map(

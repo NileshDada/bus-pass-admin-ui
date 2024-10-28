@@ -63,6 +63,16 @@ class SchoolInformationMasterService {
         }
 
     }
+
+     //dropdown list for Route master
+     ddSchoolInformationMaster() {
+        if (null != Cookies.get('empId')) {
+            return axios.get(BASE_URL +"/dd-school-info")
+        } else {
+            alert("You need to login first")
+            window.location.replace(LOGIN_UI_BASE_URL);
+        }       
+    }
 }
 
 
