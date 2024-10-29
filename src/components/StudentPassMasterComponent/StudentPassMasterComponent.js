@@ -8,6 +8,7 @@ import PassTypeMasterService from '../../services/MasterServices/PassTypeMasterS
 import BusStopMasterService from '../../services/MasterServices/BusStopMasterService';
 import RoutesMasterService from '../../services/MasterServices/RoutesMasterService';
 import SchoolInformationMasterService from '../../services/MasterServices/SchoolInformationMasterService';
+import CustomerMasterService from '../../services/CustomerMasterService';
 export default function StudentPassMasterComponent() {
 
 
@@ -80,7 +81,10 @@ export default function StudentPassMasterComponent() {
     const [routesMasters, setRoutesMasters] = useState([])
 
     const [ddSchoolInfoMasters, setDdSchoolInfoMasters] = useState([])
-    
+
+    const [ddFromBusStopMasters, setDdFromBusStopMasters] = useState([])
+    const [ddToBusStopMasters, setDdToBusStopMasters] = useState([])
+
 
     const handleClose = () => {
 
@@ -92,6 +96,27 @@ export default function StudentPassMasterComponent() {
     };
     //loading all department and roles while page loading at first time
     useEffect(() => {
+
+//To create new student pass
+let custId = Cookies.get('empId')
+CustomerMasterService.getCustomerDetailsById(custId).then(res => {
+    let studPassMaster = res.data;
+
+    setCustId(studPassMaster.custId)
+    setCustFirstName(studPassMaster.custFirstName)
+    setCustMiddleName(studPassMaster.custMiddleName)
+    setCustLastName(studPassMaster.custLastName)
+
+    setCustAddress(studPassMaster.custAddress)
+    setCustDateOfBirth(studPassMaster.custDateOfBirth)
+    setCustEmailId(studPassMaster.custEmailId)
+    setCustMobileNo(studPassMaster.custMobileNo)
+    setCustGender(studPassMaster.custGender)
+}
+);
+
+
+
         StudentPassMasterService.getStudentPassMastertDetailsByPaging().then((res) => {
             if (res.data.success) {
                 setIsSuccess(true);
@@ -127,6 +152,7 @@ export default function StudentPassMasterComponent() {
         BusStopMasterService.ddRoutesMaster().then((res) => {
             setRoutesMasters(res.data);
             setRoutesId(res.data?.[0].routesId)
+            let routesId = res.data?.[0].routesId;
 
             RoutesMasterService.getRoutesDetailsById(routesId).then(res => {
                 let routesmaster = res.data;
@@ -136,8 +162,16 @@ export default function StudentPassMasterComponent() {
                 setRoutesStartLocation(routesmaster.routesStartLocation)
                 setRoutesEndLocation(routesmaster.routesEndLocation)
                 setRemark(routesmaster.remark)
+
             }
             );
+
+            BusStopMasterService.ddBusStopMaster(routesId).then((res) => {
+                setDdFromBusStopMasters(res.data);
+                setDdToBusStopMasters(res.data);
+                setFromBusStopId(res.data?.[0].busStopId)
+                setToBusStopId(res.data?.[0].busStopId)
+            });
 
         });
 
@@ -147,7 +181,7 @@ export default function StudentPassMasterComponent() {
 
             SchoolInformationMasterService.getSchoolInformationDetailsById(schoolId).then(res => {
                 let schoolInformation = res.data;
-    
+
                 setSchoolId(schoolInformation.schoolId)
                 setSchoolIdentificationNumber(schoolInformation.schoolIdentificationNumber)
                 setSchoolName(schoolInformation.schoolName)
@@ -155,12 +189,14 @@ export default function StudentPassMasterComponent() {
                 setSchoolAutonomus(schoolInformation.schoolAutonomus)
                 setSchoolEveryDayStartTiming(schoolInformation.schoolEveryDayStartTiming)
                 setSchoolEveryDayEndTiming(schoolInformation.schoolEveryDayEndTiming)
-    
+
                 setRemark(schoolInformation.remark)
             }
             );
 
         });
+
+
 
     }, []);
 
@@ -172,21 +208,14 @@ export default function StudentPassMasterComponent() {
 
         let statusCd = 'A';
         let employeeId = Cookies.get('empId')
-        let routesmaster = { custFirstName, custMiddleName, custLastName, custAddress, custMobileNo, custEmailId, custGender, custDateOfBirth, remark, statusCd, employeeId };
+
+        let routesmaster = { custId, passTypeId,passTypeAmount, routesId, fromBusStopId, toBusStopId, schoolId, schoolIdentificationNumber, studCourseName, studClassName, studRollNo, remark, statusCd, employeeId };
 
         StudentPassMasterService.saveStudentPassMastertDetails(routesmaster).then(res => {
 
             StudentPassMasterService.getStudentPassMastertDetailsByPaging().then((res) => {
                 if (res.data.success) {
-                    setIsSuccess(true);
-                    setCustAddress('');
-                    setCustEmailId('');
-                    setCustFirstName('');
-                    setCustMiddleName('');
-                    setCustLastName('');
-                    setCustAddress('');
-                    setCustEmailId('');
-                    setCustMobileNo('');
+                    setIsSuccess(true);                   
                     setCustomerMasters(res.data.responseData.content);
 
 
@@ -273,6 +302,14 @@ export default function StudentPassMasterComponent() {
         );
     }
 
+    const handleFromBusStopIdChange = (value) => {
+        setFromBusStopId(value)
+    }
+
+    const handleToBusStopIdChange = (value) => {
+        setToBusStopId(value)
+    }
+
 
     // handle region id change
     //for role , department and designation
@@ -310,6 +347,13 @@ export default function StudentPassMasterComponent() {
             setRemark(routesmaster.remark)
         }
         );
+
+        BusStopMasterService.ddBusStopMaster(routesId).then((res) => {
+            setDdFromBusStopMasters(res.data);
+            setDdToBusStopMasters(res.data);
+            setFromBusStopId(res.data?.[0].busStopId)
+            setToBusStopId(res.data?.[0].busStopId)
+        });
     }
 
     const deleteStudentPassById = (e) => {
@@ -480,32 +524,32 @@ export default function StudentPassMasterComponent() {
                                 <div className="form-group">
                                     <label className="control-label col-sm-3" htmlFor="custMiddleName">Student School Name:</label>
                                     <div className="col-sm-8">
-                                    <select className="form-control" id="passTypeId" onChange={(e) => handleSchoolInfoIdChange(e.target.value)}>
+                                        <select className="form-control" id="passTypeId" onChange={(e) => handleSchoolInfoIdChange(e.target.value)}>
 
-                                    {
-                                        ddSchoolInfoMasters.map(
-                                            ddSchoolInfoMaster =>
-                                                <option key={ddSchoolInfoMaster.schoolId} value={ddSchoolInfoMaster.schoolId}>{ddSchoolInfoMaster.schoolName}</option>
-                                        )
-                                    };
-                                </select>
-                            
+                                            {
+                                                ddSchoolInfoMasters.map(
+                                                    ddSchoolInfoMaster =>
+                                                        <option key={ddSchoolInfoMaster.schoolId} value={ddSchoolInfoMaster.schoolId}>{ddSchoolInfoMaster.schoolName}</option>
+                                                )
+                                            };
+                                        </select>
+
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                <label className="control-label col-sm-3" htmlFor="custMiddleName">Selected School Name:</label>
-                                <div className="col-sm-3">
-                                    {schoolName}
+                                    <label className="control-label col-sm-3" htmlFor="custMiddleName">Selected School Name:</label>
+                                    <div className="col-sm-3">
+                                        {schoolName}
+                                    </div>
                                 </div>
-                            </div>
 
                                 <div className="form-group">
-                                <label className="control-label col-sm-3" htmlFor="custMiddleName">School Number:</label>
-                                <div className="col-sm-3">
-                                    {schoolIdentificationNumber}
+                                    <label className="control-label col-sm-3" htmlFor="custMiddleName">School Number:</label>
+                                    <div className="col-sm-3">
+                                        {schoolIdentificationNumber}
+                                    </div>
                                 </div>
-                            </div>
                                 <div className="form-group">
                                     <label className="control-label col-sm-3" htmlFor="custMiddleName">School Address:</label>
                                     <div className="col-sm-3">
@@ -605,67 +649,79 @@ export default function StudentPassMasterComponent() {
                                 </div>
 
                                 <div className="form-group">
-                                <label className="control-label col-sm-3" htmlFor="routesStartLocation">Route Start Location:</label>
-                                <div className="col-sm-3">
-                                    {routesStartLocation}
-                                </div>
+                                    <label className="control-label col-sm-3" htmlFor="routesStartLocation">Route Start Location:</label>
+                                    <div className="col-sm-3">
+                                        {routesStartLocation}
+                                    </div>
 
-                                <label className="control-label col-sm-3" htmlFor="routesEndLocation">Route End Location:</label>
-                                <div className="col-sm-3">
-                                    {routesEndLocation}
-                                </div>
-                            </div>
-                            <div className="form-group">
-                            <hr></hr>
-                        </div>
-
-                                <div className="form-group">
-                                    <label className="control-label col-sm-4" htmlFor="custAddress">Enter Customer Address:</label>
-                                    <div className="col-sm-8">
-                                        <input type="text" className="form-control" id="custAddress" placeholder="Enter Customer Address" value={custAddress} onChange={(e) => setCustAddress(e.target.value)} />
+                                    <label className="control-label col-sm-3" htmlFor="routesEndLocation">Route End Location:</label>
+                                    <div className="col-sm-3">
+                                        {routesEndLocation}
                                     </div>
                                 </div>
-
-
                                 <div className="form-group">
-                                    <label className="control-label col-sm-4" htmlFor="custMobileNo">Enter Customer Mobile No:</label>
-                                    <div className="col-sm-8">
-                                        <input type="text" className="form-control" id="custMobileNo" placeholder="Enter Customer Mobile No" value={custMobileNo} onChange={(e) => setCustMobileNo(e.target.value)} />
-                                    </div>
-                                </div>
-
-
-                                <div className="form-group">
-                                    <label className="control-label col-sm-4" htmlFor="custEmailId">Enter Customer Email Id:</label>
-                                    <div className="col-sm-8">
-                                        <input type="text" className="form-control" id="custEmailId" placeholder="Enter Customer Email Id" value={custEmailId} onChange={(e) => setCustEmailId(e.target.value)} />
-                                    </div>
+                                    <hr></hr>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="control-label col-sm-4" htmlFor="custGender">Select Gender:</label>
-                                    <div className="col-sm-8">
-                                        <select className="form-control" id="custGender" onChange={(e) => onCustGenderHandler(e.target.value)} defaultValue={custGender} >
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                    <label className="control-label col-sm-3" htmlFor="custMiddleName">Start Bus Stop Name:</label>
+                                    <div className="col-sm-5">
+                                        <select className="form-control" id="passTypeId" onChange={(e) => handleFromBusStopIdChange(e.target.value)}>
+
+                                            {
+                                                ddFromBusStopMasters.map(
+                                                    ddFromBusStopMaster =>
+                                                        <option key={ddFromBusStopMaster.busStopId} value={ddFromBusStopMaster.busStopId}>{ddFromBusStopMaster.busStopName}</option>
+                                                )
+                                            };
+                                        </select>
+                                    </div>
+
+
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="control-label col-sm-3" htmlFor="custMiddleName">To Bus Stop Name:</label>
+                                    <div className="col-sm-5">
+                                        <select className="form-control" id="passTypeId" onChange={(e) => handleToBusStopIdChange(e.target.value)}>
+
+                                            {
+                                                ddToBusStopMasters.map(
+                                                    ddFromBusStopMaster =>
+                                                        <option key={ddFromBusStopMaster.busStopId} value={ddFromBusStopMaster.busStopId}>{ddFromBusStopMaster.busStopName}</option>
+                                                )
+                                            };
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="control-label col-sm-4" htmlFor="custDateOfBirth">Select Date of Birth:</label>
-                                    <div className="col-sm-8">
-                                        <input type="date" className="form-control" defaultValue={custDateOfBirth} name="custDateOfBirth" onChange={(e) => setCustDateOfBirth(e.target.value)} />
-
-                                    </div>
+                                    <hr></hr>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="control-label col-sm-4" htmlFor="reamrk">Enter Remark:</label>
-                                    <div className="col-sm-8">
-                                        <textarea row="5" className="form-control" id="remark" placeholder="Enter Remark here" value={remark} onChange={(e) => setRemark(e.target.value)} />
-                                    </div>
+                                <label className="control-label col-sm-3" htmlFor="studCourseName">Course Name:</label>
+                                <div className="col-sm-3">
+                                <input type="text" className="form-control" id="studCourseName" placeholder="Enter Course namee here" value={studCourseName} onChange={(e) => setStudCourseName(e.target.value)} />
                                 </div>
+                            </div>
+
+                            <div className="form-group">
+                            <label className="control-label col-sm-3" htmlFor="studClassName">Class Name:</label>
+                            <div className="col-sm-3">
+                            <input type="text" className="form-control" id="studClassName" placeholder="Enter Course namee here" value={studClassName} onChange={(e) => setStudClassName(e.target.value)} />
+                            </div>
+
+                            <label className="control-label col-sm-3" htmlFor="studRollNo">Roll No:</label>
+                            <div className="col-sm-3">
+                            <input type="text" className="form-control" id="studRollNo" placeholder="Enter Course namee here" value={studRollNo} onChange={(e) => setStudRollNo(e.target.value)} />
+                            </div>
+                        </div>
+
+                            <div className="form-group">
+                            <hr></hr>
+                        </div>
+
 
                             </form>
                         </div>
