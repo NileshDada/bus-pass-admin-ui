@@ -1,10 +1,9 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from "react";
-import DocumentMasterService from "../services/MasterServices/DocumentMasterService";
 import { BASE_URL_API } from '../services/URLConstants';
 import AlertboxComponent from '../components/AlertboxComponent/AlertboxComponent'
-import BusStopMasterService from '../services/MasterServices/BusStopMasterService';
-import RoutesMasterService from '../services/MasterServices/RoutesMasterService';
+import BusStopMasterService from '../services/BusPassMasterServices/BusStopMasterService';
+import RoutesMasterService from '../services/BusPassMasterServices/RoutesMasterService';
 export default function BusStopMasterComponent() {
 
 

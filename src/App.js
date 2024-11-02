@@ -1,16 +1,16 @@
 import Cookies from 'js-cookie';
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import RoleComponent from './MasterComponents/RoleComponent';
-import LanguageMasterComponent from './MasterComponents/LanguageMasterComponent';
-import DocumentMasterComponent from './MasterComponents/DocumentMasterComponent';
-import RoutesMasterComponent from './MasterComponents/RoutesMasterComponent';
-import PassTypeMasterComponent from './MasterComponents/PassTypeMasterComponent';
+
+import LanguageMasterComponent from './BusPassMasterComponents/LanguageMasterComponent';
+import DocumentMasterComponent from './BusPassMasterComponents/DocumentMasterComponent';
+import RoutesMasterComponent from './BusPassMasterComponents/RoutesMasterComponent';
+import PassTypeMasterComponent from './BusPassMasterComponents/PassTypeMasterComponent';
 import CustomerMasterComponent from './components/CustomerMasterComponent/CustomerMasterComponent';
 import StudentPassMasterComponent from './components/StudentPassMasterComponent/StudentPassMasterComponent';
-import SchoolInformationMasterComponent from './MasterComponents/SchoolInformationMasterComponent';
-import BusStopMasterComponent from './MasterComponents/BusStopMasterComponent';
-import PassTypeDocumentMasterComponent from './MasterComponents/PassTypeDocumentMasterComponent';
+import SchoolInformationMasterComponent from './BusPassMasterComponents/SchoolInformationMasterComponent';
+import BusStopMasterComponent from './BusPassMasterComponents/BusStopMasterComponent';
+import PassTypeDocumentMasterComponent from './BusPassMasterComponents/PassTypeDocumentMasterComponent';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       <nav className="navbar navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">
-            <a className="navbar-brand" href="http://localhost:3008" >FutureBizops</a>
+            <a className="navbar-brand" href="http://localhost:4000" >FutureBizops</a>
           </div>
 
           
@@ -28,11 +28,11 @@ function App() {
           <li><Link to="/customer">Customer Master</Link></li>
           <li><Link to="/studentpass">Student Pass Master</Link></li>  
             <li className="dropdown">
-            <a className="dropdown-toggle" data-toggle="dropdown" href="#">Master Records
+            <a className="dropdown-toggle" data-toggle="dropdown" href="#">Bus PassMaster Records
               <span className="caret"></span></a>
             <ul className="dropdown-menu">
                       
-            <li><Link to="/roles">Role Master</Link></li>
+            
             <li><Link to="/langauge">Language Master</Link></li>
             <li><Link to="/routes">Routes Master</Link></li>
             <li><Link to="/busstop">Bus Stop Master</Link></li>
@@ -54,14 +54,14 @@ function App() {
 
           <ul className="nav navbar-nav navbar-right">
             <li><a href="#">Welcome: {Cookies.get('custName')}</a></li>
-            <li><a href="http://localhost:3002" >Logout</a></li>
+            <li><a href="http://localhost:4000" >Logout</a></li>
           </ul>
         </div>
       </nav>
       <Routes>
 
         <Route exact path="/" ></Route>
-        <Route exact path="/roles" element={<RoleComponent></RoleComponent>}></Route>
+        
         <Route exact path="/langauge"  element={<LanguageMasterComponent></LanguageMasterComponent>}></Route>
         <Route exact path="/documents"  element={<DocumentMasterComponent></DocumentMasterComponent>}></Route>
         <Route exact path="/routes" element={<RoutesMasterComponent></RoutesMasterComponent>}></Route>

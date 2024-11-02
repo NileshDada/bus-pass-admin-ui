@@ -1,9 +1,7 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from "react";
-import DocumentMasterService from "../services/MasterServices/DocumentMasterService";
-import { BASE_URL_API } from '../services/URLConstants';
 import AlertboxComponent from '../components/AlertboxComponent/AlertboxComponent'
-import PassTypeMasterService from '../services/MasterServices/PassTypeMasterService';
+import PassTypeMasterService from '../services/BusPassMasterServices/PassTypeMasterService';
 export default function PassTypeMasterComponent() {
 
 
