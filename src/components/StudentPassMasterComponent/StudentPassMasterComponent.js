@@ -215,7 +215,8 @@ CustomerMasterService.getCustomerDetailsById(custId).then(res => {
 
             StudentPassMasterService.getStudentPassMastertDetailsByPaging().then((res) => {
                 if (res.data.success) {
-                    setIsSuccess(true);                   
+                    setIsSuccess(true);
+                   
                     setCustomerMasters(res.data.responseData.content);
 
 

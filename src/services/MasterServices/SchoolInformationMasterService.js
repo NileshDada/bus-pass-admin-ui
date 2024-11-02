@@ -64,7 +64,7 @@ class SchoolInformationMasterService {
 
     }
 
-     //dropdown list for Route master
+     
      ddSchoolInformationMaster() {
         if (null != Cookies.get('empId')) {
             return axios.get(BASE_URL +"/dd-school-info")
