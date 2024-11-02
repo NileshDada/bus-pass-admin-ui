@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL_API } from '../../services/URLConstants';
 import AlertboxComponent from '../AlertboxComponent/AlertboxComponent'
 import StudentPassMasterService from '../../services/StudentPassMasterService';
-import PassTypeMasterService from '../../services/MasterServices/PassTypeMasterService';
-import BusStopMasterService from '../../services/MasterServices/BusStopMasterService';
-import RoutesMasterService from '../../services/MasterServices/RoutesMasterService';
-import SchoolInformationMasterService from '../../services/MasterServices/SchoolInformationMasterService';
+import PassTypeMasterService from '../../services/BusPassMasterServices/PassTypeMasterService';
+import BusStopMasterService from '../../services/BusPassMasterServices/BusStopMasterService';
+import RoutesMasterService from '../../services/BusPassMasterServices/RoutesMasterService';
+import SchoolInformationMasterService from '../../services/BusPassMasterServices/SchoolInformationMasterService';
 import CustomerMasterService from '../../services/CustomerMasterService';
 export default function StudentPassMasterComponent() {
 

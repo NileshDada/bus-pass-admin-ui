@@ -2,15 +2,15 @@ import Cookies from 'js-cookie';
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
-import LanguageMasterComponent from './BusPassMasterComponents/LanguageMasterComponent';
-import DocumentMasterComponent from './BusPassMasterComponents/DocumentMasterComponent';
-import RoutesMasterComponent from './BusPassMasterComponents/RoutesMasterComponent';
-import PassTypeMasterComponent from './BusPassMasterComponents/PassTypeMasterComponent';
+import LanguageMasterComponent from './components/BusPassMasterComponents/LanguageMasterComponent';
+import DocumentMasterComponent from './components/BusPassMasterComponents/DocumentMasterComponent';
+import RoutesMasterComponent from './components/BusPassMasterComponents/RoutesMasterComponent';
+import PassTypeMasterComponent from './components/BusPassMasterComponents/PassTypeMasterComponent';
 import CustomerMasterComponent from './components/CustomerMasterComponent/CustomerMasterComponent';
 import StudentPassMasterComponent from './components/StudentPassMasterComponent/StudentPassMasterComponent';
-import SchoolInformationMasterComponent from './BusPassMasterComponents/SchoolInformationMasterComponent';
-import BusStopMasterComponent from './BusPassMasterComponents/BusStopMasterComponent';
-import PassTypeDocumentMasterComponent from './BusPassMasterComponents/PassTypeDocumentMasterComponent';
+import SchoolInformationMasterComponent from './components/BusPassMasterComponents/SchoolInformationMasterComponent';
+import BusStopMasterComponent from './components/BusPassMasterComponents/BusStopMasterComponent';
+import PassTypeDocumentMasterComponent from './components/BusPassMasterComponents/PassTypeDocumentMasterComponent';
 
 function App() {
   return (

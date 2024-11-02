@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from "react";
-import AlertboxComponent from '../components/AlertboxComponent/AlertboxComponent'
-import RoutesMasterService from '../services/BusPassMasterServices/RoutesMasterService';
+import AlertboxComponent from '../AlertboxComponent/AlertboxComponent'
+import RoutesMasterService from '../../services/BusPassMasterServices/RoutesMasterService';
 export default function RoutesMasterComponent() {
 
 

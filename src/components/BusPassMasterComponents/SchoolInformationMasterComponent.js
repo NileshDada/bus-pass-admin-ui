@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from "react";
 
-import AlertboxComponent from '../components/AlertboxComponent/AlertboxComponent'
-import SchoolInformationMasterService from '../services/BusPassMasterServices/SchoolInformationMasterService';
+import AlertboxComponent from '../AlertboxComponent/AlertboxComponent'
+import SchoolInformationMasterService from '../../services/BusPassMasterServices/SchoolInformationMasterService';
 
 export default function SchoolInformationMasterComponent() {
 
