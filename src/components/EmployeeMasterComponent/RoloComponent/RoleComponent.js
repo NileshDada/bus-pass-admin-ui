@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RoleService from "./../services/MasterServices/RoleService";
+import RoleService from "../../../services/EmployeeMasterService/RoleService";
 
 export default function RoleComponent() {
 
@@ -7,7 +7,7 @@ export default function RoleComponent() {
 
     useEffect(() => {
         RoleService.getRolesDetailsByPaging().then((res) => {
-            setRoles(res.data.responseData.content);
+            setRoles(res.data.responseData.content?.filter((item) => item.roleId !== 1));
         });
     }, []);
 
